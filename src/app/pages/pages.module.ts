@@ -25,12 +25,18 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { PasswordModule } from 'primeng/password';
+import { UnitsComponent } from './units/units.component';
+import { UnitComponent } from './units/unit/unit.component';
+import { AddUnitComponent } from './units/add-unit/add-unit.component';
 
 @NgModule({
     declarations: [
         UsersComponent,
         UserComponent,
         AddUserComponent,
+        UnitsComponent,
+        UnitComponent,
+        AddUnitComponent
     ],
     imports: [
         FormsModule,

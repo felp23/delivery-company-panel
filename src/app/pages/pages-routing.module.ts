@@ -7,8 +7,10 @@ import { ErrorComponent } from '../components/error/error.component';
 import { LandingComponent } from '../components/landing/landing.component';
 import { LoginComponent } from '../components/login/login.component';
 import { NotfoundComponent } from '../components/notfound/notfound.component';
-import { UsersComponent } from './users/users.component';
 import { PagesComponent } from './pages.component';
+
+import { UsersComponent } from './users/users.component';
+import { UnitsComponent } from './units/units.component';
 
 const routes: Routes = [{
 	path: '',
@@ -21,6 +23,10 @@ const routes: Routes = [{
 		{
 			path: 'users',
 			component: UsersComponent,
+		},
+		{
+			path: 'units',
+			component: UnitsComponent,
 		},
     ]
 }];
