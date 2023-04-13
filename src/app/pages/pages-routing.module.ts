@@ -11,6 +11,7 @@ import { PagesComponent } from './pages.component';
 
 import { UsersComponent } from './users/users.component';
 import { UnitsComponent } from './units/units.component';
+import { DriversComponent } from './drivers/drivers.component';
 
 const routes: Routes = [{
 	path: '',
@@ -27,6 +28,10 @@ const routes: Routes = [{
 		{
 			path: 'units',
 			component: UnitsComponent,
+		},
+		{
+			path: 'drivers',
+			component: DriversComponent,
 		},
     ]
 }];

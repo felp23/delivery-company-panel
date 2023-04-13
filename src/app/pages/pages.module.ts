@@ -28,6 +28,9 @@ import { PasswordModule } from 'primeng/password';
 import { UnitsComponent } from './units/units.component';
 import { UnitComponent } from './units/unit/unit.component';
 import { AddUnitComponent } from './units/add-unit/add-unit.component';
+import { DriversComponent } from './drivers/drivers.component';
+import { DriverComponent } from './drivers/driver/driver.component';
+import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +39,10 @@ import { AddUnitComponent } from './units/add-unit/add-unit.component';
         AddUserComponent,
         UnitsComponent,
         UnitComponent,
-        AddUnitComponent
+        AddUnitComponent,
+        DriversComponent,
+        DriverComponent,
+        AddDriverComponent
     ],
     imports: [
         FormsModule,

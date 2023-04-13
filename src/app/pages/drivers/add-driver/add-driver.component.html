@@ -1,0 +1,69 @@
+<div class="grid">
+	<div class="col-12">
+        <p-tabView>
+            <p-tabPanel header="Dados pessoais">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label>Nome</label>
+                        <input pInputText 
+                               type="text" 
+                               [(ngModel)]="userService.newUser.userFirstName"/>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Sobrenome</label>
+                        <input pInputText 
+                               type="text" 
+                               [(ngModel)]="userService.newUser.userLastName"/>
+                    </div>
+                    <div class="field col-6 md:col-6">
+                        <label htmlFor="userState">Telefone</label>
+                         <p-inputMask mask="(99) 99999-9999" 
+                                      [(ngModel)]="userService.newUser.userPhone" 
+                                      placeholder="(99) 99999-9999"></p-inputMask>
+                    </div>
+                    <div class="field col-6 md:col-6">
+                        <label htmlFor="userState">Data de nascimento</label>
+                         <p-inputMask mask="99/99/9999" 
+                                      [(ngModel)]="userService.newUser.userBirthdate" 
+                                      placeholder="99/99/9999"></p-inputMask>
+                    </div>
+                    <div class="field col-6 md:col-6">
+                        <label htmlFor="userLevel">Nível de acesso</label>
+                        <p-dropdown [options]="userLevel" 
+                                    optionLabel="name" 
+                                    [(ngModel)]="userService.newUser.userLevel"></p-dropdown>
+                    </div>
+                    <div class="field col-6 md:col-6">
+                        <label htmlFor="userLevel">E-mail</label>
+                        <input pInputText 
+                               type="text" 
+                               [(ngModel)]="userService.newUser.userEmail">
+                    </div>
+                    <div class="field col-6 md:col-6">
+                        <label htmlFor="userLevel">Senha</label>
+                        <p-password [(ngModel)]="userService.newUser.userPasscode" 
+                                    [feedback]="false"></p-password>  
+                    </div>
+                    <div class="field col-6 md:col-6">
+                        <label htmlFor="userLevel">Confirmar senha</label>
+                        <p-password [(ngModel)]="userService.newUser.userConfirmPasscode" 
+                                    [feedback]="false"></p-password>  
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton 
+                                pRipple 
+                                label="Cadastrar" 
+                                icon="pi pi-plus" 
+                                class="p-button-success mr-2"
+                                (click)="verifyFields()"></button>
+                    </div>
+                </ng-template>
+            </p-toolbar>
+        </p-tabView>    
+	</div>
+    <p-toast [position]="toastPosition" key="ct" life="10000"></p-toast>
+</div>
