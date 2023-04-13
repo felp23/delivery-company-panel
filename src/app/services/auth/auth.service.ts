@@ -14,7 +14,7 @@ import { SharedService } from '../shared/shared.service';
 
 export class AuthService {
 
-	user: any = {}
+	admin: any = {}
 
 	constructor(
 		public configService: ConfigService,
@@ -39,7 +39,7 @@ export class AuthService {
                     this.logout();
 				} 
                 if (data) {
-					this.user = data;
+					this.admin = data;
                 }
 			}, err => {
 				this.router.navigate(['/auth/login'], {replaceUrl: true});
@@ -47,17 +47,17 @@ export class AuthService {
 	}
 
     logout() {
-        this.user = {};
+        this.admin = {};
         this.storageService.removeFromStorage('admin');
         this.router.navigateByUrl('/auth/login');
     }
 
-    login(userEmail, userPasscode): Observable<any> {
+    login(adminEmail, adminPasscode): Observable<any> {
         let URL = this.configService.baseURL + 'auth/login';
         return this.http.post<any>(URL, 
         {   
-            userEmail: userEmail, 
-            userPasscode: userPasscode
+            adminEmail: adminEmail, 
+            adminPasscode: adminPasscode
         })
         .pipe(
             tap(data => this.log(data)),

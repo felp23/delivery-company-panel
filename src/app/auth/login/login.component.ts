@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
 import { Subscription } from 'rxjs';
-import { AuthService, SharedService, StorageService, UserService } from 'src/app/services';
+import { AuthService, SharedService, StorageService, AdminService, CompanyService } from 'src/app/services';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     
     subscription: Subscription;
 
-    userEmail: any;
-    userPasscode: any;
+    adminEmail: any;
+    adminPasscode: any;
 
     constructor(
         private location: Location,
@@ -47,9 +47,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         private messageService: MessageService,
         public configService: ConfigService,
         public router: Router,
-        public userService: UserService,
+        public adminService: AdminService,
         public storageService: StorageService,
-        public sharedService: SharedService
+        public sharedService: SharedService,
+        public companyService: CompanyService
         ){ }
 
     ngOnInit(): void {
@@ -67,16 +68,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     login() {
         let response: any;
-        this.authService.login(this.userEmail, this.userPasscode).subscribe(data => 
+        this.authService.login(this.adminEmail, this.adminPasscode).subscribe(data => 
             {
                 console.log('Resposta', data);   
                 if (data.error == false) {
-                    console.log('OK');   
-                    let user: any = {};
-                    user = data.user;
-                    user.userPasscode = "";
-                    console.log('User', user);   
-                    if (user.userLevel == 1) {
+                    let admin: any = {};
+                    admin = data.admin;
+                    admin.adminPasscode = "";
+                    console.log('admin', admin);   
+                    if (admin.adminLevel == 1) {
                         this.messageService.add(
                             {
                                 severity:'success', 
@@ -84,11 +84,13 @@ export class LoginComponent implements OnInit, OnDestroy {
                                 detail: 'Você será redirecionado.'
                             }
                         );
-                        this.authService.user = user;
-                        this.storageService.sendToStorage('admin', user);
+                        this.authService.admin = admin;
+                        this.companyService.company = data.company[0];
+                        console.log('COMPANY', this.companyService.company);   
+                        this.storageService.sendToStorage('admin', admin);
                         this.router.navigateByUrl('/pages/dashboard');
                     }
-                    if (user.userLevel != 1) {
+                    if (admin.adminLevel != 1) {
                         this.messageService.add(
                             {
                                 severity:'error', 
