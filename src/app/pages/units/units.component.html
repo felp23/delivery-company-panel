@@ -8,7 +8,7 @@
             <br>
 
             <p-table #dt 
-                     [value]="filteredUsers" 
+                     [value]="filteredUnits" 
                      [columns]="cols" 
                      responsiveLayout="scroll" 
                      [rows]="10" 
@@ -34,41 +34,17 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn="userFirstName">
-                            Nome 
-                            <p-sortIcon field="userFirstName"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="userLastName">
-                            Sobrenome 
-                            <p-sortIcon field="userLastName"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="userAddress">
-                            Endereço 
-                            <p-sortIcon field="userAddress"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="userCity">
-                            Cidade 
-                            <p-sortIcon field="userCity"></p-sortIcon>
+                        <th pSortableColumn="unitName">
+                            Nome da unidade
+                            <p-sortIcon field="unitName"></p-sortIcon>
                         </th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-user>
+                <ng-template pTemplate="body" let-unit>
                     <tr>
                         <td style="width:25%; min-width:10rem;" (click)="openUserPage(user)">
-                            <span class="p-column-title">Nome</span>
-                            {{user.userFirstName}}
-                        </td>
-                        <td style="width:25%; min-width:10rem;" (click)="openUserPage(user)">
-                            <span class="p-column-title">Sobrenome</span>
-                            {{user.userLastName}}
-                        </td>
-                        <td style="width:25%; min-width:10rem;" (click)="openUserPage(user)">
-                            <span class="p-column-title">E-mail</span>
-                            {{user.userEmail}}
-                        </td>
-                        <td style="width:25%; min-width:10rem;" (click)="openUserPage(user)">
-                            <span class="p-column-title">Celular</span>
-                            {{user.userPhone}}
+                            <span class="p-column-title">Nome da unidade</span>
+                            {{unit.unitName}}
                         </td>
                     </tr>
                 </ng-template>

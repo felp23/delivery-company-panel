@@ -1,33 +1,39 @@
 <div class="grid">
 	<div class="col-12">
-        <p-tabView>
-            <p-tabPanel header="Dados pessoais">
-                <div class="p-fluid p-formgrid grid">
-                    <div class="field col-12 md:col-6">
-                        <label>Nome</label>
-                        <input pInputText 
-                               type="text" 
-                               [(ngModel)]="userService.newUser.userFirstName"/>
-                    </div>
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label>Nome da unidade</label>
+                <input pInputText 
+                        type="text" 
+                        [(ngModel)]="unitService.newUnit.unitName"/>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label>Telefone</label>
+                <p-inputMask mask="(99) 99999-9999" 
+                            [(ngModel)]="unitService.newUnit.unitPhone" 
+                            placeholder="(99) 99999-9999"></p-inputMask>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label>E-mail</label>
+                <input pInputText 
+                        type="text" 
+                        [(ngModel)]="unitService.newUnit.unitEmail"/>
+            </div>
+        </div>
+        <p-divider></p-divider>
+        <app-add-address></app-add-address>
+        <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <div class="my-2">
+                    <button pButton 
+                            pRipple 
+                            label="Adicionar unidade" 
+                            icon="pi pi-user-plus" 
+                            class="p-button-primary mr-2" 
+                            (click)="addAddress()"></button>
                 </div>
-            </p-tabPanel>
-            <p-tabPanel header="Endereço">
-                <p>TESTE</p>
-                <app-add-address></app-add-address>
-            </p-tabPanel>
-            <p-toolbar styleClass="mb-4">
-                <ng-template pTemplate="left">
-                    <div class="my-2">
-                        <button pButton 
-                                pRipple 
-                                label="Cadastrar" 
-                                icon="pi pi-plus" 
-                                class="p-button-success mr-2"
-                                (click)="verifyFields()"></button>
-                    </div>
-                </ng-template>
-            </p-toolbar>
-        </p-tabView>    
+            </ng-template>
+        </p-toolbar>
 	</div>
     <p-toast [position]="toastPosition" key="ct" life="10000"></p-toast>
 </div>

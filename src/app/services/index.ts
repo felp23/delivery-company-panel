@@ -6,3 +6,5 @@ export * from './storage/storage.service';
 export * from './shared/shared.service';
 export * from './admin/admin.service';
 export * from './company/company.service';
+export * from './address/address.service';
+export * from './unit/unit.service';

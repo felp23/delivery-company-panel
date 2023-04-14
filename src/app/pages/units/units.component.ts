@@ -6,7 +6,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddUnitComponent } from './add-unit/add-unit.component';
 
-import { UserService, SharedService, AuthService } from 'src/app/services';
+import { UserService, SharedService, AuthService, UnitService } from 'src/app/services';
 import { Router } from '@angular/router';
 
 import {BreadcrumbModule} from 'primeng/breadcrumb';
@@ -24,22 +24,23 @@ export class UnitsComponent implements OnInit {
     // ref: DynamicDialogRef;
     cols: any[];
     rowsPerPageOptions = [5, 10, 20];
-    users: any = [];
+    units: any = [];
     // user: User[] = [];
 
-    filteredUsers: any = [];
+    filteredUnits: any = [];
 
     constructor(
                 public router: Router,
                 public dialogService: DialogService,
                 public userService: UserService,
                 public sharedService: SharedService,
-                public authService: AuthService
+                public authService: AuthService,
+                public unitService: UnitService
         ) { }
 
     ngOnInit(): void {
         // this.authService.checkAuth();
-        // this.getUsers();
+        this.getUnitsByComprny();
         // console.log('Users: ', this.users);
 
         this.updateBreadcrumb();
@@ -60,7 +61,7 @@ export class UnitsComponent implements OnInit {
             width: '70%'
         });
 
-        ref.onClose.subscribe(data => this.getUnits());
+        ref.onClose.subscribe(data => this.getUnitsByComprny());
     }
 
     openUnitPage(user) {
@@ -69,17 +70,15 @@ export class UnitsComponent implements OnInit {
         this.router.navigateByUrl('/pages/users/user');
     }
 
-	async getUnits() {
-		await this.userService.getUsers()
-			.toPromise()
-				.then(data => {
-					console.log(data);
-                    this.users = data;
-                    this.filteredUsers = data;
-				}, err => {
-					console.log(err);
-				});
-	}
+    getUnitsByComprny() {
+        this.unitService.getUnitsByCompany().subscribe(response =>
+            {
+                console.log('UNITS: ', response);
+                this.units = response;
+                this.filteredUnits = response;
+            }
+        )
+    }
 
     getItems(searchbar) {
         // console.log('Searchbar: ', searchbar.srcElement.value);

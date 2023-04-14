@@ -6,7 +6,8 @@ import { AuthService,
          SharedService, 
          ConfigService, 
          StorageService, 
-         UserService } from 'src/app/services';
+         UserService, 
+         AddressService} from 'src/app/services';
 
 @Component({
     selector: 'app-add-address',
@@ -40,7 +41,8 @@ export class AddAddressComponent implements OnInit {
         public authService: AuthService,
         public storageService: StorageService,
         public userService: UserService,
-        public sharedService: SharedService
+        public sharedService: SharedService,
+        public addressService: AddressService
         ) { }
 
     ngOnInit(): void {

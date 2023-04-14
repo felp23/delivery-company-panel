@@ -6,7 +6,10 @@ import { AuthService,
          SharedService, 
          ConfigService, 
          StorageService, 
-         UserService } from 'src/app/services';
+         UserService, 
+         AddressService,
+         UnitService,
+         CompanyService} from 'src/app/services';
 
 @Component({
     selector: 'app-add-unit',
@@ -40,7 +43,10 @@ export class AddUnitComponent implements OnInit {
         public authService: AuthService,
         public storageService: StorageService,
         public userService: UserService,
-        public sharedService: SharedService
+        public sharedService: SharedService,
+        public addressService: AddressService,
+        public unitService: UnitService,
+        public companySerivce: CompanyService
         ) { }
 
     ngOnInit(): void {
@@ -106,19 +112,31 @@ export class AddUnitComponent implements OnInit {
 		// this.addUser();
 	}
 
-    addUser() {
-        // this.userService.newUser.userLevel = this.userService.newUser.userLevel.value;
-        // this.userService.addUser().subscribe(data => 
-        //     this.checkReturn(data)
-        // );
+    addAddress() {
+        console.log('ENDEREÇO: ', this.addressService.newAddress);
+        this.addressService.addAddress().subscribe(response => 
+            {
+                console.log('RESPOSTA ENDEREÇO: ', response);
+                if (response.success) {
+                    this.unitService.newUnit.unitAddressId = response.addressId;
+                    this.unitService.newUnit.unitCompanyId = this.companySerivce.company.companyId;
+                    this.addUnit();
+                }
+            }
+        );
     }
 
-    checkReturn(response) {
-        // console.log('Resposta', response);   
-        // if (response.success == true) {
-        //     this.userService.newUser = {};
-        //     this.ref.close(this.sharedService.toastAddSuccess());
-        // }
+    addUnit() {
+        console.log('UNIDADE: ', this.unitService.newUnit);
+        this.unitService.addUnit().subscribe(response => 
+            {
+                console.log('RESPOSTA UNIDADE: ', response);
+                if (response.success) {
+                    this.router.navigateByUrl('/pages/units');
+                    this.ref.close()
+                }
+            }
+        );
     }
 
 }

@@ -7,6 +7,7 @@ import { ConfigService } from '../config/config.service';
 import { StorageService } from '../storage/storage.service';
 import { Location } from '@angular/common';
 import { SharedService } from '../shared/shared.service';
+import { CompanyService } from '../company/company.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +23,8 @@ export class AuthService {
 		public router: Router,
         public storageService: StorageService,
         public sharedService: SharedService,
-        private location: Location
+        private location: Location,
+        public companyService: CompanyService
 	) 
     { 
         this.checkAuth();
@@ -52,7 +54,7 @@ export class AuthService {
                     this.logout();
                 } 
                 if (data) {
-                    // this.admin = data;
+                    this.companyService.company = data;
                 }
             }, err => {
                 this.router.navigate(['/auth/login'], {replaceUrl: true});

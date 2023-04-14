@@ -31,8 +31,9 @@ import { AddUnitComponent } from './units/add-unit/add-unit.component';
 import { DriversComponent } from './drivers/drivers.component';
 import { DriverComponent } from './drivers/driver/driver.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
-import { SharedModule } from './shared/shared.module';
-import { AddAddressComponent } from './shared/add-address/add-address.component';
+import { SharedModule } from './shared-components/shared.module';
+import { AddAddressComponent } from './shared-components/add-address/add-address.component';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
     declarations: [
@@ -64,10 +65,8 @@ import { AddAddressComponent } from './shared/add-address/add-address.component'
         InputTextModule,
         InputTextareaModule,
         DropdownModule,
-        PasswordModule
-    ],
-    exports: [
-        AddAddressComponent
+        PasswordModule,
+        DividerModule
     ]
 })
 
