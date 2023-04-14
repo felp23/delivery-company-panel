@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 // import { ProductService } from '../../service/productservice';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { AddUserComponent } from './add-user/add-user.component';
+import { AddAddressComponent } from '../add-address/add-address.component';
 
 import { UserService, SharedService, AuthService } from 'src/app/services';
 import { Router } from '@angular/router';
@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 @Component({
-    selector: 'app-users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.scss']
+    selector: 'app-addresses',
+    templateUrl: './addresses.component.html',
+    styleUrls: ['./addresses.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class AddressesComponent implements OnInit {
 
     submitted: boolean;
     statuses: any[];
@@ -55,7 +55,7 @@ export class UsersComponent implements OnInit {
     }
 
     showAddUserDialog() {
-        const ref = this.dialogService.open(AddUserComponent, {
+        const ref = this.dialogService.open(AddAddressComponent, {
             header: 'Novo usuário',
             width: '70%'
         });

@@ -73,7 +73,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                 console.log('Resposta', data);   
                 if (data.error == false) {
                     let admin: any = {};
+                    let company: any = {};
                     admin = data.admin;
+                    company = data.company[0];
                     admin.adminPasscode = "";
                     console.log('admin', admin);   
                     if (admin.adminLevel == 1) {
@@ -85,9 +87,10 @@ export class LoginComponent implements OnInit, OnDestroy {
                             }
                         );
                         this.authService.admin = admin;
-                        this.companyService.company = data.company[0];
+                        this.companyService.company = company;
                         console.log('COMPANY', this.companyService.company);   
                         this.storageService.sendToStorage('admin', admin);
+                        this.storageService.sendToStorage('company', company);
                         this.router.navigateByUrl('/pages/dashboard');
                     }
                     if (admin.adminLevel != 1) {

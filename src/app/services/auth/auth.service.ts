@@ -25,7 +25,7 @@ export class AuthService {
         private location: Location
 	) 
     { 
-        // this.checkAuth();
+        this.checkAuth();
     }
 
 	checkAuth() {
@@ -44,11 +44,25 @@ export class AuthService {
 			}, err => {
 				this.router.navigate(['/auth/login'], {replaceUrl: true});
 			})
+        this.storageService.getFromStorage('company')
+            .then(data => {
+                console.log('checkAuth', data);
+                if (!data) {
+                    console.log('Off', data);
+                    this.logout();
+                } 
+                if (data) {
+                    // this.admin = data;
+                }
+            }, err => {
+                this.router.navigate(['/auth/login'], {replaceUrl: true});
+            })
 	}
 
     logout() {
         this.admin = {};
         this.storageService.removeFromStorage('admin');
+        this.storageService.removeFromStorage('company');
         this.router.navigateByUrl('/auth/login');
     }
 

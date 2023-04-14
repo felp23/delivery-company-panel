@@ -54,22 +54,22 @@ export class UnitsComponent implements OnInit {
         ];
     }
 
-    showAddUserDialog() {
+    showAddUnitDialog() {
         const ref = this.dialogService.open(AddUnitComponent, {
-            header: 'Novo usuário',
+            header: 'Adicionar unidade',
             width: '70%'
         });
 
-        ref.onClose.subscribe(data => this.getUsers());
+        ref.onClose.subscribe(data => this.getUnits());
     }
 
-    openUserPage(user) {
+    openUnitPage(user) {
         this.userService.selectedUser = user;
         console.log("Selected User: ", user);
         this.router.navigateByUrl('/pages/users/user');
     }
 
-	async getUsers() {
+	async getUnits() {
 		await this.userService.getUsers()
 			.toPromise()
 				.then(data => {
