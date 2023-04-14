@@ -1,98 +1,105 @@
-<!-- <p-breadcrumb [model]="sharedService.items" [home]="sharedService.home"></p-breadcrumb>
-<br>
-<div class="grid">
-	<div class="col-12">
-        <div class="card">
-            <h5 class="m-0">Informações de {{selectedUser.userFirstName}} {{selectedUser.userLastName}}</h5>
-            <br>
-            <div class="p-fluid p-formgrid grid">
-                <div class="field col-12 md:col-6">
-                    <label>Nome</label>
-                    <input pInputText 
-                           id="userFirstname" 
-                           type="text" 
-                           [(ngModel)]="selectedUser.userFirstName"
-                           [readonly]="!allowEdit"/>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="userLastname">Sobrenome</label>
-                    <input pInputText 
-                           id="userLastname" 
-                           type="text" 
-                           [(ngModel)]="selectedUser.userLastName"
-                           [readonly]="!allowEdit"/>
-                </div>
-                <div class="field col-6 md:col-6">
-                    <label>Telefone</label>
-                    <p-inputMask mask="(99) 99999-9999" 
-                                 [(ngModel)]="selectedUser.userPhone" 
-                                 placeholder="(99) 99999-9999"
-                                 [readonly]="!allowEdit"></p-inputMask>
-                </div>
-                <div class="field col-6 md:col-6">
-                    <label>Data de nascimento</label>
-                    <p-inputMask mask="99/99/9999" 
-                                 [(ngModel)]="selectedUser.userBirthdate" 
-                                 placeholder="99/99/9999"
-                                 [readonly]="!allowEdit"></p-inputMask>
-                </div>
-                    <div class="field col-6 md:col-6">
-                        <label htmlFor="userLevel">E-mail</label>
-                        <input pInputText 
-                               type="text" 
-                               [(ngModel)]="selectedUser.userEmail"
-                               [readonly]="!allowEdit">
-                    </div>
-                <div class="field col-6 md:col-6">
-                    <label>Nível de acesso</label>
-                    <p-dropdown [options]="userLevel" 
-                                optionLabel="name" 
-                                [(ngModel)]="selectedUser.userLevel"
-                                [readonly]="!allowEdit"></p-dropdown>
-                </div>
-            </div>
-            <p-toolbar styleClass="mb-4">
-                <ng-template pTemplate="left">
-                    <div class="my-2">
-                        <button pButton 
-                                pRipple 
-                                label="Editar" 
-                                icon="pi pi-user-edit" 
-                                class="p-button-primary mr-2"
-                                *ngIf="!allowEdit"
-                                (click)="changeEdit()"></button>
-                    </div>
-                    <div class="my-2">
-                        <button pButton 
-                                pRipple 
-                                label="Salvar" 
-                                icon="pi pi-check" 
-                                class="p-button-success mr-2"
-                                *ngIf="allowEdit"
-                                (click)="editUser()"></button>
-                    </div>
-                    <div class="my-2">
-                        <button pButton 
-                                pRipple 
-                                label="Cancelar" 
-                                icon="pi pi-times" 
-                                class="p-button-secondary mr-2"
-                                *ngIf="allowEdit"
-                                (click)="changeEdit()"></button>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="right">
-                    <div class="my-2">
-                        <button pButton 
-                                pRipple 
-                                label="Apagar" 
-                                icon="pi pi-trash" 
-                                class="p-button-danger mr-2"
-                                *ngIf="allowEdit"
-                                (click)="confirmDelete()"></button>
-                    </div>
-                </ng-template>
-            </p-toolbar>
+
+<div class="card">
+    <!-- <h5 class="m-0">Informações de {{selectedAddress.userFirstName}} {{selectedAddress.userLastName}}</h5> -->
+    <br>
+    <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+            <label>Nome do endereço</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressName"
+                    [readonly]="!allowEdit"/>
         </div>
-	</div>
-</div> -->
+        <div class="field col-12 md:col-6">
+            <label htmlFor="userLastname">Rua</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressStreet"
+                    [readonly]="!allowEdit"/>
+        </div>
+        <div class="field col-6 md:col-6">
+            <label htmlFor="userLevel">Número</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressNumber"
+                    [readonly]="!allowEdit">
+        </div>
+        <div class="field col-6 md:col-6">
+            <label htmlFor="userLevel">Bairro</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressNeighborhood"
+                    [readonly]="!allowEdit">
+        </div>
+        <div class="field col-6 md:col-6">
+            <label htmlFor="userLevel">Cidade</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressCity"
+                    [readonly]="!allowEdit">
+        </div>
+        <div class="field col-6 md:col-6">
+            <label htmlFor="userLevel">Complemento</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressComplement"
+                    [readonly]="!allowEdit">
+        </div>
+        <div class="field col-6 md:col-6">
+            <label htmlFor="userLevel">Latitude</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressLat"
+                    [readonly]="!allowEdit">
+        </div>
+        <div class="field col-6 md:col-6">
+            <label htmlFor="userLevel">Longitude</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressLng"
+                    [readonly]="!allowEdit">
+        </div>
+    </div>
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <div class="my-2">
+                <button pButton 
+                        pRipple 
+                        label="Editar" 
+                        icon="pi pi-user-edit" 
+                        class="p-button-primary mr-2"
+                        *ngIf="!allowEdit"
+                        (click)="changeEdit()"></button>
+            </div>
+            <div class="my-2">
+                <button pButton 
+                        pRipple 
+                        label="Salvar" 
+                        icon="pi pi-check" 
+                        class="p-button-success mr-2"
+                        *ngIf="allowEdit"
+                        (click)="editUser()"></button>
+            </div>
+            <div class="my-2">
+                <button pButton 
+                        pRipple 
+                        label="Cancelar" 
+                        icon="pi pi-times" 
+                        class="p-button-secondary mr-2"
+                        *ngIf="allowEdit"
+                        (click)="changeEdit()"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="right">
+            <div class="my-2">
+                <button pButton 
+                        pRipple 
+                        label="Apagar" 
+                        icon="pi pi-trash" 
+                        class="p-button-danger mr-2"
+                        *ngIf="allowEdit"
+                        (click)="confirmDelete()"></button>
+            </div>
+        </ng-template>
+    </p-toolbar>
+</div>

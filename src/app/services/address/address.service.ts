@@ -12,6 +12,7 @@ import { ConfigService } from '../config/config.service';
 
 export class AddressService {
 
+    addressId: any;
     address: any = {};
     addresses: any = [];
     newAddress: any = {};
@@ -70,10 +71,12 @@ export class AddressService {
             catchError(this.handleError('users', [])));
     }
 
-    getUsers(): Observable<any> {
-        let URL = this.configService.baseURL + 'user/users';
+    getAddressById(): Observable<any> {
+        let URL = this.configService.baseURL + 'address/address-by-id';
         return this.http.post<any>(URL, 
-        {})
+        {
+            addressId: this.addressId
+        })
         .pipe(
             tap(data => this.log(data)),
             catchError(this.handleError('users', [])));

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-// import { AuthService, SharedService, ConfigService, StorageService, UserService, ToasterService } from 'src/app/services';
+import { AuthService, SharedService, ConfigService, StorageService, UserService, ToasterService, AddressService } from 'src/app/services';
 
 @Component({
     selector: 'app-address',
@@ -20,26 +20,34 @@ export class AddressComponent implements OnInit {
         { name: 'Colaborador', value: 2 }
     ];
 
-    selectedUser: any = {};
+    selectedAddress: any = {};
 
     constructor(
         public router: Router,
         private confirmationService: ConfirmationService,
-        // public configService: ConfigService,
-        // public authService: AuthService,
-        // public storageService: StorageService,
-        // public userService: UserService,
-        // public sharedService: SharedService,
-        // public messageService: MessageService,
-        // public toastService: ToasterService
+        public configService: ConfigService,
+        public authService: AuthService,
+        public storageService: StorageService,
+        public userService: UserService,
+        public sharedService: SharedService,
+        public messageService: MessageService,
+        public toastService: ToasterService,
+        public addressService: AddressService
         ) { }
 
     ngOnInit(): void {
-        // this.authService.checkAuth();
-        // this.updateBreadcrumb();
-        // this.selectedUser = this.configService.cloneObject(this.userService.selectedUser);
+        // this.selectedAddress = this.configService.cloneObject(this.addressService.selectedAddress);
+        this.getAddressById();
     }
 
+    getAddressById() {
+        this.addressService.getAddressById().subscribe(response => {
+            if (response.success) {
+                this.selectedAddress = response.address[0];
+            }
+        })
+    }
+    
     changeEdit() {
         // this.selectedUser = this.configService.cloneObject(this.userService.selectedUser);
         // this.allowEdit = !this.allowEdit;

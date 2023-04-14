@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-// import { AuthService, SharedService, ConfigService, StorageService, UserService, ToasterService } from 'src/app/services';
+import { AuthService, 
+         SharedService, 
+         ConfigService, 
+         StorageService, 
+         UserService, 
+         ToasterService, 
+         UnitService} from 'src/app/services';
 
 @Component({
     selector: 'app-unit',
@@ -20,24 +26,25 @@ export class UnitComponent implements OnInit {
         { name: 'Colaborador', value: 2 }
     ];
 
-    selectedUser: any = {};
+    selectedUnit: any = {};
 
     constructor(
         public router: Router,
         private confirmationService: ConfirmationService,
-        // public configService: ConfigService,
-        // public authService: AuthService,
-        // public storageService: StorageService,
-        // public userService: UserService,
-        // public sharedService: SharedService,
-        // public messageService: MessageService,
-        // public toastService: ToasterService
+        public configService: ConfigService,
+        public authService: AuthService,
+        public storageService: StorageService,
+        public userService: UserService,
+        public sharedService: SharedService,
+        public messageService: MessageService,
+        public toastService: ToasterService,
+        public unitService: UnitService
         ) { }
 
     ngOnInit(): void {
-        // this.authService.checkAuth();
-        // this.updateBreadcrumb();
-        // this.selectedUser = this.configService.cloneObject(this.userService.selectedUser);
+        this.authService.checkAuth();
+        this.updateBreadcrumb();
+        this.selectedUnit = this.configService.cloneObject(this.unitService.selectedUnit);
     }
 
     changeEdit() {
@@ -93,16 +100,16 @@ export class UnitComponent implements OnInit {
     }
 
     updateBreadcrumb() {
-        // this.sharedService.items = [
-        //     {
-        //         label:'Lista de usuários',
-        //         routerLink: ['/pages/users']
-        //     },
-        //     {
-        //         label:'Detalhes do usuário',
-        //         routerLink: ['/pages/users/user']
-        //     },
-        // ];
+        this.sharedService.items = [
+            {
+                label:'Lista de unidades',
+                routerLink: ['/pages/units']
+            },
+            {
+                label:'Detalhes da unidade',
+                routerLink: ['/pages/units/unit']
+            },
+        ];
     }
 
     goTo(link) {

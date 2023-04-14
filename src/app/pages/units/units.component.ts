@@ -6,7 +6,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddUnitComponent } from './add-unit/add-unit.component';
 
-import { UserService, SharedService, AuthService, UnitService } from 'src/app/services';
+import { UserService, SharedService, AuthService, UnitService, AddressService } from 'src/app/services';
 import { Router } from '@angular/router';
 
 import {BreadcrumbModule} from 'primeng/breadcrumb';
@@ -35,7 +35,8 @@ export class UnitsComponent implements OnInit {
                 public userService: UserService,
                 public sharedService: SharedService,
                 public authService: AuthService,
-                public unitService: UnitService
+                public unitService: UnitService,
+                public addressService: AddressService
         ) { }
 
     ngOnInit(): void {
@@ -64,10 +65,11 @@ export class UnitsComponent implements OnInit {
         ref.onClose.subscribe(data => this.getUnitsByComprny());
     }
 
-    openUnitPage(user) {
-        this.userService.selectedUser = user;
-        console.log("Selected User: ", user);
-        this.router.navigateByUrl('/pages/users/user');
+    openUnitPage(unit: any) {
+        this.unitService.selectedUnit = unit;
+        this.addressService.addressId = unit.unitAddressId;
+        console.log("Selected Unit: ", unit);
+        this.router.navigateByUrl('/pages/units/unit');
     }
 
     getUnitsByComprny() {
