@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -11,6 +11,8 @@ import { AuthService, SharedService, ConfigService, StorageService, UserService,
 })
 
 export class AddressComponent implements OnInit {
+
+    @Input() deleteButton: boolean = false;
 
     allowEdit: boolean = false;
 
@@ -40,17 +42,28 @@ export class AddressComponent implements OnInit {
         this.getAddressById();
     }
 
-    getAddressById() {
+    async getAddressById(): Promise<void> {
         this.addressService.getAddressById().subscribe(response => {
-            if (response.success) {
+            if (response.success) {        
                 this.selectedAddress = response.address[0];
+                this.addressService.selectedAddress = response.address[0];
+                this.addressService.selectedAddress = this.configService.cloneObject(this.selectedAddress);
             }
         })
     }
     
     changeEdit() {
-        // this.selectedUser = this.configService.cloneObject(this.userService.selectedUser);
-        // this.allowEdit = !this.allowEdit;
+        this.selectedAddress = this.configService.cloneObject(this.addressService.selectedAddress);
+        this.allowEdit = !this.allowEdit;
+    }
+
+    editAddress() {
+        this.addressService.editAddress(this.selectedAddress).subscribe(response => {
+            if (response.success == true) {
+                console.log('EDIT ADDRESS', response);
+                this.allowEdit = !this.allowEdit;
+            }
+        })
     }
 
     confirm() {
@@ -86,18 +99,6 @@ export class AddressComponent implements OnInit {
         //         this.router.navigateByUrl('/pages/users');
         //     }
         // })
-    }
-
-    editUser() {
-        // this.selectedUser.userLevel = this.selectedUser.userLevel.value;
-        // this.userService.editUser(this.selectedUser).subscribe(response => {
-        //     console.log('Resposta', response);   
-        //     if(response.success) {
-        //         this.toastService.showSuccessToast('Usuário editado com sucesso');
-        //         this.userService.selectedUser = this.userService.editedUser;
-        //         this.changeEdit();
-        //     }            
-        // });
     }
 
     updateBreadcrumb() {

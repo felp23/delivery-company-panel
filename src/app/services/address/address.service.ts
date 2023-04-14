@@ -42,18 +42,20 @@ export class AddressService {
             catchError(this.handleError('users', [])));
     }
 
-    editUser(editedUser): Observable<any> {
-        let URL = this.configService.baseURL + 'user/edit-user';
+    editAddress(editedAddress): Observable<any> {
+        let URL = this.configService.baseURL + 'address/edit-address';
         return this.http.post<any>(URL, 
         {
-            userId: editedUser.userId,
-            userFirstName: editedUser.userFirstName,
-            userLastName: editedUser.userLastName,
-            userEmail: editedUser.userEmail,
-            userPhone: editedUser.userPhone,
-            userBirthdate: editedUser.userBirthdate,
-            userPasscode: editedUser.userPasscode,
-            userLevel: editedUser.userLevel,
+            addressId: editedAddress.addressId,
+            addressName: editedAddress.addressName,
+            addressStreet: editedAddress.addressStreet,
+            addressNumber: editedAddress.addressNumber,
+            addressNeighborhood: editedAddress.addressNeighborhood,
+            addressCity: editedAddress.addressCity,
+            addressComplement: editedAddress.addressComplement,
+            addressZipCode: editedAddress.addressZipCode,
+            addressLat: editedAddress.addressLat,
+            addressLng: editedAddress.addressLng
         })
         .pipe(
             tap(data => this.log(data)),

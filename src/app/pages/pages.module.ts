@@ -34,6 +34,7 @@ import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 import { SharedModule } from './shared-components/shared.module';
 import { AddAddressComponent } from './shared-components/add-address/add-address.component';
 import { DividerModule } from 'primeng/divider';
+import { AddressService } from '../services';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,9 @@ import { DividerModule } from 'primeng/divider';
         DropdownModule,
         PasswordModule,
         DividerModule
+    ],
+    providers: [
+        AddressService
     ]
 })
 

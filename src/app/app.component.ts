@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 @Component({
     selector: 'app-root',
-    template: '<router-outlet></router-outlet>'
+    template: '<p-toast></p-toast><router-outlet></router-outlet>'
 })
 export class AppComponent {
 

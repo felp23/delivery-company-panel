@@ -23,6 +23,7 @@ import { PasswordModule } from 'primeng/password';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { AddressComponent } from './address/address.component';
 import { AddressesComponent } from './addresses/addresses.component';
+import { AddressService } from 'src/app/services';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,9 @@ import { AddressesComponent } from './addresses/addresses.component';
         InputTextareaModule,
         DropdownModule,
         PasswordModule
+    ],
+    providers: [
+        AddressService
     ],
     exports: [
         AddAddressComponent,

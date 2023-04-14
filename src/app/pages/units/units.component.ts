@@ -45,6 +45,9 @@ export class UnitsComponent implements OnInit {
         // console.log('Users: ', this.users);
 
         this.updateBreadcrumb();
+        if (!this.filteredUnits) {
+            this.router.navigateByUrl('/pages/units');
+        }
     }
 
     updateBreadcrumb() {
@@ -69,7 +72,10 @@ export class UnitsComponent implements OnInit {
         this.unitService.selectedUnit = unit;
         this.addressService.addressId = unit.unitAddressId;
         console.log("Selected Unit: ", unit);
-        this.router.navigateByUrl('/pages/units/unit');
+        console.log("Selected Address: ", this.addressService.addressId);
+        if (this.addressService.addressId) {
+            this.router.navigateByUrl('/pages/units/unit');
+        }
     }
 
     getUnitsByComprny() {

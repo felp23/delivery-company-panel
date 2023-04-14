@@ -47,7 +47,7 @@
                                 icon="pi pi-check" 
                                 class="p-button-success mr-2"
                                 *ngIf="allowEdit"
-                                (click)="editUser()"></button>
+                                (click)="editUnit()"></button>
                     </div>
                     <div class="my-2">
                         <button pButton 
@@ -74,4 +74,4 @@
         </div>
 	</div>
 </div>
-<app-address></app-address>
+<app-address [deleteButton]="false"></app-address>

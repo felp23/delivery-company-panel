@@ -45,11 +45,25 @@ export class UnitComponent implements OnInit {
         this.authService.checkAuth();
         this.updateBreadcrumb();
         this.selectedUnit = this.configService.cloneObject(this.unitService.selectedUnit);
+        if (!this.selectedUnit.unitId) {
+            this.router.navigateByUrl('/pages/units');
+        }
     }
 
     changeEdit() {
-        // this.selectedUser = this.configService.cloneObject(this.userService.selectedUser);
-        // this.allowEdit = !this.allowEdit;
+        this.selectedUnit = this.configService.cloneObject(this.unitService.selectedUnit);
+        this.allowEdit = !this.allowEdit;
+    }
+
+    editUnit() {
+        this.unitService.editUnit(this.selectedUnit).subscribe(response => {
+            console.log('RESPOSTA: ', response);
+            if (response.success) {
+                this.unitService.selectedUnit = this.configService.cloneObject(this.selectedUnit);
+                this.allowEdit = false;
+                this.sharedService.toastCustomSuccess('As informações da unidade foram alteradas com sucesso');
+            }
+        })
     }
 
     confirm() {
@@ -74,28 +88,6 @@ export class UnitComponent implements OnInit {
         //     reject: () => {
         //         //reject action
         //     }
-        // });
-    }
-    
-    deleteUser() {
-        // this.userService.deleteUser(this.userService.selectedUser.userId).subscribe(data => {
-        //     console.log('RESPOSTA DA FUNÇÂO DELETE: ', data);
-        //     if (data.success) {
-        //         this.toastService.showSuccessToast('Usuário apagado com sucesso!');
-        //         this.router.navigateByUrl('/pages/users');
-        //     }
-        // })
-    }
-
-    editUser() {
-        // this.selectedUser.userLevel = this.selectedUser.userLevel.value;
-        // this.userService.editUser(this.selectedUser).subscribe(response => {
-        //     console.log('Resposta', response);   
-        //     if(response.success) {
-        //         this.toastService.showSuccessToast('Usuário editado com sucesso');
-        //         this.userService.selectedUser = this.userService.editedUser;
-        //         this.changeEdit();
-        //     }            
         // });
     }
 

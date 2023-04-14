@@ -1,10 +1,10 @@
 
 <div class="card">
-    <!-- <h5 class="m-0">Informações de {{selectedAddress.userFirstName}} {{selectedAddress.userLastName}}</h5> -->
+    <h5 class="m-0">Informações do endereço</h5>
     <br>
     <div class="p-fluid p-formgrid grid">
         <div class="field col-12 md:col-6">
-            <label>Nome do endereço</label>
+            <label>Identificação do endereço</label>
             <input pInputText 
                     type="text" 
                     [(ngModel)]="selectedAddress.addressName"
@@ -46,6 +46,13 @@
                     [readonly]="!allowEdit">
         </div>
         <div class="field col-6 md:col-6">
+            <label htmlFor="userLevel">CEP</label>
+            <input pInputText 
+                    type="text" 
+                    [(ngModel)]="selectedAddress.addressZipCode"
+                    [readonly]="!allowEdit">
+        </div>
+        <div class="field col-6 md:col-6">
             <label htmlFor="userLevel">Latitude</label>
             <input pInputText 
                     type="text" 
@@ -78,7 +85,7 @@
                         icon="pi pi-check" 
                         class="p-button-success mr-2"
                         *ngIf="allowEdit"
-                        (click)="editUser()"></button>
+                        (click)="editAddress()"></button>
             </div>
             <div class="my-2">
                 <button pButton 
@@ -91,7 +98,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="right">
-            <div class="my-2">
+            <div class="my-2" *ngIf="deleteButton">
                 <button pButton 
                         pRipple 
                         label="Apagar" 

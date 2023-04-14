@@ -39,18 +39,14 @@ export class UnitService {
             catchError(this.handleError('users', [])));
     }
 
-    editUser(editedUser): Observable<any> {
+    editUnit(editedUser): Observable<any> {
         let URL = this.configService.baseURL + 'unit/edit-unit';
         return this.http.post<any>(URL, 
         {
-            userId: editedUser.userId,
-            userFirstName: editedUser.userFirstName,
-            userLastName: editedUser.userLastName,
-            userEmail: editedUser.userEmail,
-            userPhone: editedUser.userPhone,
-            userBirthdate: editedUser.userBirthdate,
-            userPasscode: editedUser.userPasscode,
-            userLevel: editedUser.userLevel,
+            unitId: editedUser.unitId,
+            unitName: editedUser.unitName,
+            unitPhone: editedUser.unitPhone,
+            unitEmail: editedUser.unitEmail
         })
         .pipe(
             tap(data => this.log(data)),
