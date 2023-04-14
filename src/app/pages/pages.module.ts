@@ -35,6 +35,9 @@ import { SharedModule } from './shared-components/shared.module';
 import { AddAddressComponent } from './shared-components/add-address/add-address.component';
 import { DividerModule } from 'primeng/divider';
 import { AddressService } from '../services';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationComponent } from '../components/menus/confirmation.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +49,7 @@ import { AddressService } from '../services';
         AddUnitComponent,
         DriversComponent,
         DriverComponent,
-        AddDriverComponent
+        AddDriverComponent,
     ],
     imports: [
         FormsModule,
@@ -67,10 +70,13 @@ import { AddressService } from '../services';
         InputTextareaModule,
         DropdownModule,
         PasswordModule,
-        DividerModule
+        DividerModule,
+        ConfirmDialogModule,
+        ConfirmPopupModule,
     ],
     providers: [
-        AddressService
+        AddressService,
+        ConfirmationService
     ]
 })
 

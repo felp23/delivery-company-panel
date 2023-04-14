@@ -53,15 +53,16 @@ export class UnitService {
             catchError(this.handleError('users', [])));
     }
 
-    deleteUser(userId): Observable<any> {
-        let URL = this.configService.baseURL + 'user/delete-user';
+    deleteUnit(unitId: any, unitAddressId: any): Observable<any> {
+        let URL = this.configService.baseURL + 'unit/delete-unit';
         return this.http.post<any>(URL, 
         {
-            userId: userId
+            unitId: unitId,
+            unitAddressId: unitAddressId
         })
         .pipe(
             tap(data => this.log(data)),
-            catchError(this.handleError('users', [])));
+            catchError(this.handleError('address', [])));
     }
 
     getUnitsByCompany(): Observable<any> {

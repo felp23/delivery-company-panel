@@ -300,6 +300,8 @@ import { PagesRoutingModule } from './pages/pages-routing.module';
         ConfirmationService,
         DialogService
     ],
+    exports: [
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

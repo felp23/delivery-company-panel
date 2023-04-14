@@ -66,29 +66,33 @@ export class UnitComponent implements OnInit {
         })
     }
 
-    confirm() {
-        // this.confirmationService.confirm({
-        //     message: 'Tem certeza que deseja apagar esse usuário?',
-        //     accept: () => {
-        //         this.deleteUser();
-        //     }
-        // });
-    }
-
     confirmDelete() {
-        // this.confirmationService.confirm({
-        //     target: event.target,
-        //     message: 'Tem certeza que deseja apagar esse usuário?',
-        //     icon: 'pi pi-exclamation-triangle',
-        //     acceptLabel: 'Sim',
-        //     rejectLabel: 'Não',
-        //     accept: () => {
-        //         this.deleteUser();
-        //     },
-        //     reject: () => {
-        //         //reject action
-        //     }
-        // });
+        console.log('Confirm Delete: ');
+        this.confirmationService.confirm({
+            target: event.target,
+            message: 'Tem certeza que deseja apagar essa unidade?',
+            icon: 'pi pi-exclamation-triangle',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Não',
+            accept: () => {
+                this.deleteUnit();
+            },
+            reject: () => {
+                //reject action
+            }
+        });
+    }
+    
+    deleteUnit() {
+        this.unitService.deleteUnit(
+            this.unitService.selectedUnit.unitId,
+            this.unitService.selectedUnit.unitAddressId).subscribe(response => 
+            {
+                if(response.success) {
+                    this.router.navigateByUrl('/pages/units');
+                }
+            }
+        )
     }
 
     updateBreadcrumb() {
